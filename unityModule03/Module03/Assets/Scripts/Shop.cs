@@ -1,21 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
 	public GameObject	fastTurret = null;
 	public GameObject	mediumTurret = null;
 	public GameObject	heavyTurret = null;
-	
+	public Jauge		energy = null;
+	public Button		fastButton = null;
+	public Button		mediumButton = null;
+	public Button		heavyButton = null;
+
 	private GameObject	current = null;
+	private float		currentPrice = 0;
     
 	void Start()
     {
     }
 
-    void Update()
+    void FixedUpdate()
     {
+		if (this.energy.Amount() < 10)
+		{
+			this.fastButton.interactable = false;
+			this.mediumButton.interactable = false;
+			this.heavyButton.interactable = false;
+		}
+		else if (this.energy.Amount() < 20)
+		{
+			this.fastButton.interactable = true;
+			this.mediumButton.interactable = false;
+			this.heavyButton.interactable = false;
+		}
+		else if (this.energy.Amount() < 30)
+		{
+			this.fastButton.interactable = true;
+			this.mediumButton.interactable = true;
+			this.heavyButton.interactable = false;
+		}
+		else
+		{
+			this.fastButton.interactable = true;
+			this.mediumButton.interactable = true;
+			this.heavyButton.interactable = true;
+		}
     }
 
 	public void BeginDrag()
@@ -28,16 +58,28 @@ public class Shop : MonoBehaviour
 			switch (hit.collider.gameObject.name)
 			{
 				case "FastTurret":
-					this.current = Object.Instantiate(this.fastTurret);
-					this.current.GetComponent<TurretController>().SetActive(false);
+					if (this.fastButton.interactable)
+					{
+						this.currentPrice = 10;
+						this.current = Object.Instantiate(this.fastTurret);
+						this.current.GetComponent<TurretController>().SetActive(false);
+					}
 					break ;
 				case "MediumTurret":
-					this.current = Object.Instantiate(this.mediumTurret);
-					this.current.GetComponent<TurretController>().SetActive(false);
+					if (this.mediumButton.interactable)
+					{
+						this.currentPrice = 20;
+						this.current = Object.Instantiate(this.mediumTurret);
+						this.current.GetComponent<TurretController>().SetActive(false);
+					}
 					break ;
 				case "HeavyTurret":
-					this.current = Object.Instantiate(this.heavyTurret);
-					this.current.GetComponent<TurretController>().SetActive(false);
+					if (this.heavyButton.interactable)
+					{
+						this.currentPrice = 30;
+						this.current = Object.Instantiate(this.heavyTurret);
+						this.current.GetComponent<TurretController>().SetActive(false);
+					}
 					break ;
 				default :
 					break ;
@@ -69,6 +111,7 @@ public class Shop : MonoBehaviour
 					slot.empty = false;
 					this.current.transform.position = hit.transform.position + new Vector3(-0.1f, 0.2f, 0);
 					this.current.GetComponent<TurretController>().SetActive(true);
+					this.energy.AddJauge(-this.currentPrice);
 				}
 				else
 					Object.Destroy(this.current);

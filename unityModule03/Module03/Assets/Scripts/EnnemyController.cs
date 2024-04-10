@@ -6,7 +6,14 @@ public class EnnemyController : MonoBehaviour
 {
 	public float	healthPoints = 1;
 	public float	moveSpeed = 1;
+	public float	reward = 5;
+	public Jauge	energyRef = null;
 	public Vector3	direction = Vector3.down;
+
+	void Start()
+	{
+
+	}
 
     void FixedUpdate()
     {
@@ -25,6 +32,12 @@ public class EnnemyController : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Map"))
 			Object.Destroy(this.gameObject);
+	}
+
+	void OnDestroy()
+	{
+		if (healthPoints <= 0)
+			this.energyRef.AddJauge(this.reward);
 	}
 
 	public void TakeDamage(float val)

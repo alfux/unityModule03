@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 	public GameObject	ennemyType = null;
+	public Jauge		energyRef = null;
 	public float		spawnRate = 1;
 
 	private float	t = 0;
@@ -22,7 +23,9 @@ public class Spawner : MonoBehaviour
 		{
 			this.t = 0;
 			if (Spawner.active)
-				Object.Instantiate(this.ennemyType, this.transform);
+			{
+				Object.Instantiate(this.ennemyType, this.transform).GetComponent<EnnemyController>().energyRef = this.energyRef;
+			}
 		}
 		else
 			this.t += Time.deltaTime;

@@ -7,6 +7,7 @@ public class TurretController : MonoBehaviour
 	public float		fireRate = 1;
 	public float		basicDamage = 1;
 	public float		bulletSpeed = 1;
+	public Vector3		bulletSize = Vector3.one;
 	public GameObject	bulletType = null;
 	
 	private EnnemyController	mainTarget = null;
@@ -28,6 +29,7 @@ public class TurretController : MonoBehaviour
 			{
 				GameObject	bullet = Object.Instantiate(this.bulletType, this.transform);
 
+				bullet.transform.localScale = this.bulletSize;
 				bullet.GetComponent<Rigidbody2D>().AddForce((this.mainTarget.transform.position - this.transform.position) * this.bulletSpeed, ForceMode2D.Impulse);
 				this.t = 0;
 			}
