@@ -7,13 +7,10 @@ public class EnnemyController : MonoBehaviour
 	public float	healthPoints = 1;
 	public float	moveSpeed = 1;
 	public float	reward = 5;
+	public float	baseScore = 1;
+	public float	timeMultiplier = 1;
 	public Jauge	energyRef = null;
 	public Vector3	direction = Vector3.down;
-
-	void Start()
-	{
-
-	}
 
     void FixedUpdate()
     {
@@ -37,7 +34,11 @@ public class EnnemyController : MonoBehaviour
 	void OnDestroy()
 	{
 		if (healthPoints <= 0)
+		{
 			this.energyRef.AddJauge(this.reward);
+			UIManager.AddScore(this.baseScore * this.timeMultiplier / Time.timeSinceLevelLoad);
+			Spawner.SetDeathTime();
+		}
 	}
 
 	public void TakeDamage(float val)

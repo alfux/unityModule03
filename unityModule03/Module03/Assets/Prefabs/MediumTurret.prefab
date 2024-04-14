@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9477fa418974806af0968652aef918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 2
+  fireRate: 3
   basicDamage: 0.2
   bulletSpeed: 5
   bulletSize: {x: 0.6, y: 0.6, z: 0.6}

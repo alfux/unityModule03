@@ -40,9 +40,14 @@ public class Jauge : MonoBehaviour
 		this.current = Mathf.Clamp(this.current + (this.supLimit - this.infLimit) * percentage / 100, this.infLimit, this.supLimit);
 		this.step = this.current - this.mask.localPosition.x;
 	}
-
+	
 	public float Amount()
 	{
 		return (this.total * (this.current - this.infLimit) / (this.supLimit - this.infLimit));
 	}
+
+	public float PreciseAmount()
+	{
+		return (this.total * (this.mask.localPosition.x - this.infLimit) / (this.supLimit - this.infLimit));
+	}	
 }

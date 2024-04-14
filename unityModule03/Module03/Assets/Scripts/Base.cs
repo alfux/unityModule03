@@ -14,11 +14,12 @@ public class Base : MonoBehaviour
 
     void Update()
     {
-        if (this.healthPoints < 1)
+        if (Mathf.Round(this.health.PreciseAmount()) <= 0)
 		{
 			Debug.Log("Game Over");
 			Spawner.Deactivate();
 			GameObject.Destroy(this.gameObject);
+			UIManager.GameOver();
 		}
     }
 	

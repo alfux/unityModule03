@@ -9,7 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 8324d969fe23b4c528331fe5f42881d7
   - enabled: 1
+    path: Assets/Scenes/ScoreBoard.unity
+    guid: e33dd6e7abd854970889db32cc80b669
+  - enabled: 1
     path: Assets/Scenes/map01.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/map02.unity
+    guid: cb7d1354167d84ce28986091457db172
+  - enabled: 1
+    path: Assets/Scenes/FinalBoard.unity
+    guid: 97fb38f68851b43fdb478a1ba407f141
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
