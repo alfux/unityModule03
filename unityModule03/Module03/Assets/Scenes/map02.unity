@@ -6176,7 +6176,7 @@ MonoBehaviour:
   ennemyHP: 4
   ennemyMS: 1
   ennemyEnergyReward: 5
-  ennemyBaseScore: 1.2
+  ennemyBaseScore: 1
   ennemyTimeMultiplier: 60
   maxEnnemies: 100
 --- !u!4 &1681405564
